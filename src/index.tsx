@@ -1,18 +1,23 @@
-import {h} from "preact";
+/** @jsx h */
+/// <reference no-default-lib="true"/>
+/// <reference lib="dom" />
+/// <reference lib="dom.asynciterable" />
+/// <reference lib="deno.ns" />
 
-import {render} from "preact";
-import {Provider as ReduxProvider} from "react-redux";
-import {HashRouter} from "react-router-dom";
+import { h, render } from "../deps/preact.ts";
+import { Provider as ReduxProvider } from "../deps/react_redux.ts";
+import { HashRouter } from "../deps/react_router_dom.ts";
 
-import "./reset.css";
+// import "./reset.css";
 
-import store from "./store";
-import App from "./App";
+import store from "./store/index.ts";
+import App from "./App.tsx";
 
-render((
+render(
 	<ReduxProvider store={store}>
 		<HashRouter hashType="noslash">
 			<App />
 		</HashRouter>
-	</ReduxProvider>
-), document.getElementById("root")!);
+	</ReduxProvider>,
+	document.getElementById("root")!,
+);

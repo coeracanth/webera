@@ -1,16 +1,17 @@
-import {h} from "preact";
+/** @jsx h */
+import { h } from "../../deps/preact.ts";
 
-import type {FunctionComponent} from "preact";
-import {createUseStyles} from "react-jss";
-import {useHistory, useParams} from "react-router";
+import type { FunctionComponent } from "../../deps/preact.ts";
+import { createUseStyles } from "../../deps/react_jss.ts";
+import { useHistory, useParams } from "../../deps/react_router_dom.ts";
 
-import BlockList from "../components/BlockList";
-import Console from "../components/Console";
-import ErrorPopup from "../components/ErrorPopup";
-import {useAsyncEffect} from "../hooks";
-import {useDispatch, useSelector} from "../store";
-import {selectError, startVM} from "../store/vm";
-import * as sx from "../style-util";
+import BlockList from "../components/BlockList.tsx";
+import Console from "../components/Console.tsx";
+import ErrorPopup from "../components/ErrorPopup.tsx";
+import { useAsyncEffect } from "../hooks.ts";
+import { useDispatch, useSelector } from "../store/index.ts";
+import { selectError, startVM } from "../store/vm.ts";
+import * as sx from "../style-util.ts";
 
 const useStyles = createUseStyles({
 	root: {
@@ -52,16 +53,24 @@ const Play: FunctionComponent = () => {
 	const params = useParams<Params>();
 	const error = useSelector(selectError);
 
+	// @ts-ignore maybe undef
 	useAsyncEffect(() => dispatch(startVM(params.slot)), [params.slot]);
 	const onBack = () => history.push("/");
+	// @ts-ignore maybe undef
 	const onRetry = () => dispatch(startVM(params.slot));
 
 	return (
 		<div className={styles.root}>
-			{error != null ?
-				<ErrorPopup className={styles.popup} error={error} onBack={onBack} onRetry={onRetry} /> :
-				null
-			}
+			{error != null
+				? (
+					<ErrorPopup
+						className={styles.popup}
+						error={error}
+						onBack={onBack}
+						onRetry={onRetry}
+					/>
+				)
+				: null}
 			<div className={styles.spacer} />
 			<BlockList className={styles.body} />
 			<Console className={styles.console} />

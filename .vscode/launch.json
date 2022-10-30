@@ -1,0 +1,25 @@
+{
+	// IntelliSense を使用して利用可能な属性を学べます。
+	// 既存の属性の説明をホバーして表示します。
+	// 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"request": "launch",
+			"name": "Launch Program",
+			"type": "pwa-node",
+			"program": "${workspaceFolder}/mod.tsx",
+			"cwd": "${workspaceFolder}",
+			"runtimeExecutable": "C:\\Users\\coelacanth\\.deno\\bin\\deno.EXE",
+			"runtimeArgs": [
+				"run",
+				"--unstable",
+				"--config",
+				"deno.jsonc",
+				"--inspect-brk",
+				"--allow-all"
+			],
+			"attachSimplePort": 9229
+		}
+	]
+}

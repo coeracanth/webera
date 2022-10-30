@@ -1,9 +1,10 @@
-import {useEffect} from "preact/hooks";
+import { useEffect } from "../deps/preact_hooks.ts";
 
 export function useAsyncEffect(
-	effect: () => Promise<any>,
-	deps?: Parameters<typeof useEffect>[1],
+  effect: () => Promise<void>,
+  deps?: Parameters<typeof useEffect>[1],
 ) {
-	// eslint-disable-next-line @typescript-eslint/no-floating-promises
-	useEffect(() => { effect(); }, deps);
+  useEffect(() => {
+    effect();
+  }, deps);
 }
