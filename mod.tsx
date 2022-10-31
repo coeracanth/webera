@@ -1,16 +1,9 @@
 /** @jsx h */
-import { SizeHint, Webview } from "https://deno.land/x/webview@0.7.5/mod.ts";
 import { h } from "./deps/preact.ts";
+import { SizeHint, Webview } from "https://deno.land/x/webview@0.7.5/mod.ts";
 import { renderToString } from "./deps/preact_render.ts";
-import { bundle } from "https://deno.land/x/emit@0.10.0/mod.ts";
-import { serve } from "https://deno.land/std@0.161.0/http/server.ts";
 
 const sev = Deno.listen({ port: 8000 });
-// const server = serve(async (req) => {
-// 	const scripts = await bundle("./src/index.tsx");
-
-// 	return new Response(scripts.code);
-// });
 
 // const View = () => (
 // 	<html>
@@ -58,8 +51,7 @@ for await (const con of sev) {
 	for await (const req of httpCon) {
 		switch (req.request.url) {
 			case "http://localhost:8000/script.js": {
-				const scripts = await bundle("./src/index.tsx");
-				const res = new Response(scripts.code);
+				const res = new Response(await Deno.readFile("./public/bundle.js"));
 				res.headers.set("Content-Type", "text/javascript");
 				req.respondWith(res);
 				break;
