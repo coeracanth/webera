@@ -10,7 +10,7 @@
 			"type": "pwa-node",
 			"program": "${workspaceFolder}/mod.tsx",
 			"cwd": "${workspaceFolder}",
-			"runtimeExecutable": "C:\\Users\\coelacanth\\.deno\\bin\\deno.EXE",
+			"runtimeExecutable": "deno",
 			"runtimeArgs": [
 				"run",
 				"--unstable",
